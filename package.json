@@ -1,7 +1,7 @@
 {
 	"name": "@kumodefe/rc-smart-layout",
 	"description": "A flexible and customizable layout component for React that supports resizing, collapsing, and persistent size. It allows you to manage layout sections with horizontal and vertical orientations, with the ability to adjust sizes and remember them across sessions.",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"license": "MIT",
 	"publisher": "kumodefe",
 	"author": "kumodefe",
@@ -11,6 +11,13 @@
 	"files": [
 		"dist"
 	],
+	"exports": {
+		".": {
+			"import": "./dist/index.esm.js",
+			"require": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
 	"scripts": {
 		"build": "tsup src/index.tsx --dts --format esm,cjs",
 		"dev": "tsup src/index.tsx --watch"

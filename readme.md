@@ -179,3 +179,6 @@ export default SmartLayoutExample;
 ## License
 
 This project is licensed under the MIT License.
+
+## Keywords
+layout, smart layout, dynamic layout, responsive, grid, flexbox, ui layout, react layout, nextjs layout, tailwind, ui, component, react component, layout system, custom layout, split layout, responsive layout, collapsible layout, react layout component, layout model, component layout, react, resizable, collapsible

@@ -1,6 +1,6 @@
 # React Smart Layout
 
-### [Demo](rc-smart-layout-demo-zmz7.vercel.app)
+### [Demo](https://rc-smart-layout-demo-zmz7.vercel.app)
 
 A flexible and customizable layout component for React that supports resizing, collapsing, and persistent size. It allows you to manage layout sections with horizontal and vertical orientations, with the ability to adjust sizes and remember them across sessions.
 

@@ -18,6 +18,21 @@ A flexible and customizable layout component for React that supports resizing, c
 
 To install the package, run the following command in your project directory:
 
+Add tailwind config tailwind.config.js
+```ts
+{
+	content: ["./node_modules/smart-layout/**/*.{js,ts,jsx,tsx}"],
+	theme: {
+		// ...
+	},
+	variants: {
+		// ...
+	},
+	plugins: [],
+};
+
+```
+
 Add needed packages:
 
 ```bash

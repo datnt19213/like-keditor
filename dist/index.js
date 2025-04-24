@@ -30,7 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.tsx
 var index_exports = {};
 __export(index_exports, {
-  SmartLayout: () => SmartLayout
+  SmartLayout: () => SmartLayout_default
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -180,6 +180,7 @@ var SmartLayout = ({
   const Tag = as;
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LayoutContext.Provider, { value: { direction }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, { className: layoutClass, children }) });
 };
+var SmartLayout_default = SmartLayout;
 SmartLayout.Header = (props) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Section, { ...props });
 SmartLayout.Body = (props) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Section, { grow: true, scroll: true, ...props });
 SmartLayout.Footer = (props) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Section, { ...props });

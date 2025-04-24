@@ -1,10 +1,10 @@
 {
-	"name": "rc-smart-layout",
+	"name": "@kumodefe/rc-smart-layout",
 	"description": "A flexible and customizable layout component for React that supports resizing, collapsing, and persistent size. It allows you to manage layout sections with horizontal and vertical orientations, with the ability to adjust sizes and remember them across sessions.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
-	"publisher": "ponander",
-	"author": "ponander",
+	"publisher": "kumodefe",
+	"author": "kumodefe",
 	"main": "dist/index.js",
 	"module": "dist/index.esm.js",
 	"types": "dist/index.d.ts",
@@ -17,7 +17,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/datnt19213/rc-smart-layout.git"
+		"url": "git+https://github.com/datnt19213/rc-smart-layout.git"
 	},
 	"peerDependencies": {
 		"react": "^18.0.0",
@@ -36,6 +36,9 @@
 		"@types/react-dom": "^19.1.2",
 		"tsup": "^8.4.0",
 		"typescript": "^5.8.3"
+	},
+	"publishConfig": {
+		"access": "public"
 	},
 	"keywords": [
 		"layout",
@@ -62,5 +65,9 @@
 		"react",
 		"resizable",
 		"collapsible"
-	]
+	],
+	"bugs": {
+		"url": "https://github.com/datnt19213/rc-smart-layout/issues"
+	},
+	"homepage": "https://github.com/datnt19213/rc-smart-layout#readme"
 }

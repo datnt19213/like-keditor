@@ -23,9 +23,9 @@ import {
 /**
  * Types
  */
-type Direction = "vertical" | "horizontal";
+export type Direction = "vertical" | "horizontal";
 
-interface LayoutContextType {
+export interface LayoutContextType {
 	direction: Direction;
 }
 
@@ -33,7 +33,7 @@ const LayoutContext = createContext<LayoutContextType>({
 	direction: "vertical",
 });
 
-interface SectionBase {
+export interface SectionBase {
 	children: ReactNode;
 	scroll?: boolean;
 	grow?: boolean;
@@ -56,7 +56,7 @@ interface SectionBase {
 	resizeBarClass?: (props: any) => string;
 }
 
-interface SmartLayoutProps {
+export interface SmartLayoutProps {
 	direction?: Direction;
 	children: ReactNode;
 	className?: string;
@@ -220,7 +220,7 @@ const Section = ({
 /**
  * Main Layout Component
  */
-export const SmartLayout = ({
+const SmartLayout = ({
 	children,
 	direction = "vertical",
 	className,
@@ -249,6 +249,8 @@ export const SmartLayout = ({
 		</LayoutContext.Provider>
 	);
 };
+
+export default SmartLayout;
 
 SmartLayout.Header = (props: SectionBase) => <Section {...props} />;
 SmartLayout.Body = (props: SectionBase) => <Section grow scroll {...props} />;

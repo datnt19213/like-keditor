@@ -155,10 +155,11 @@ var SmartLayout = ({
   const Tag = as;
   return /* @__PURE__ */ jsx(LayoutContext.Provider, { value: { direction }, children: /* @__PURE__ */ jsx(Tag, { className: layoutClass, children }) });
 };
+var SmartLayout_default = SmartLayout;
 SmartLayout.Header = (props) => /* @__PURE__ */ jsx(Section, { ...props });
 SmartLayout.Body = (props) => /* @__PURE__ */ jsx(Section, { grow: true, scroll: true, ...props });
 SmartLayout.Footer = (props) => /* @__PURE__ */ jsx(Section, { ...props });
 export {
-  SmartLayout
+  SmartLayout_default as SmartLayout
 };
 //# sourceMappingURL=index.mjs.map

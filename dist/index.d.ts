@@ -45,4 +45,4 @@ declare const SmartLayout: {
     Footer(props: SectionBase): react_jsx_runtime.JSX.Element;
 };
 
-export { SmartLayout };
+export { type Direction, type SectionBase, SmartLayout, type SmartLayoutProps };

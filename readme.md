@@ -21,7 +21,7 @@ To install the package, run the following command in your project directory:
 Add tailwind config tailwind.config.js
 ```ts
 {
-	content: ["./node_modules/smart-layout/**/*.{js,ts,jsx,tsx}"],
+	content: ["./node_modules/rc-smart-layout/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		// ...
 	},
@@ -50,11 +50,11 @@ yarn add lucide-react clsx
 Or if you're using npm:
 
 ```bash
-npm install smart-layout-pro
+npm install @kumodefe/rc-smart-layout
 ```
 
 ```bash
-yarn add smart-layout-pro
+yarn add @kumodefe/rc-smart-layout
 ```
 
 ## Usage
@@ -62,7 +62,7 @@ yarn add smart-layout-pro
 ### Basic Layout
 
 ```tsx
-import {SmartLayout} from "smart-layout-pro";
+import {SmartLayout} from "rc-smart-layout";
 
 const App = () => (
 	<SmartLayout direction="vertical" responsive>
@@ -76,7 +76,7 @@ const App = () => (
 ### Resizable and Collapsible Sections
 
 ```tsx
-import {SmartLayout} from "smart-layout-pro";
+import {SmartLayout} from "rc-smart-layout";
 
 const App = () => (
 	<SmartLayout direction="horizontal">

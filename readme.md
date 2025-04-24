@@ -21,10 +21,10 @@ To install the package, run the following command in your project directory:
 Add tailwind config tailwind.config.js
 
 ---
-if you use tailwindcss >=v4.0 use this in init css file in project:
+If you use tailwindcss >=v4.0 use this in init css file in project:
 ```css
 @config "path_to_your_config_tailwindcss_file"
-/* ex: @config "../tailwind.config.js" #for vite react */
+/* example: @config "../tailwind.config.js" #for vite react */
 ```
 ---
 
@@ -44,27 +44,20 @@ Add needed packages to your `tailwind.config.js` file:
 
 ```
 
-Add needed packages:
+Add needed packages with npm or yarn:
 
 ```bash
 npm install lucide-react clsx
-
-```
-
-Or
-
-```bash
+# or
 yarn add lucide-react clsx
 
 ```
 
-Or if you're using npm:
+Install with npm or yarn:
 
 ```bash
 npm install @kumodefe/rc-smart-layout
-```
-
-```bash
+# or
 yarn add @kumodefe/rc-smart-layout
 ```
 
@@ -99,6 +92,7 @@ const App = () => (
 	</SmartLayout>
 );
 ```
+---
 
 ### With Persistent Size and Minimum Size
 
@@ -117,6 +111,8 @@ const App = () => (
 	</SmartLayout>
 );
 ```
+
+---
 
 ## Customization
 

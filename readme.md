@@ -1,6 +1,6 @@
-# Smart Layout Pro
+# React Smart Layout
 
-### [Demo](https://www.google.com/)
+### [Demo](rc-smart-layout-demo-zmz7.vercel.app)
 
 A flexible and customizable layout component for React that supports resizing, collapsing, and persistent size. It allows you to manage layout sections with horizontal and vertical orientations, with the ability to adjust sizes and remember them across sessions.
 
@@ -19,6 +19,17 @@ A flexible and customizable layout component for React that supports resizing, c
 To install the package, run the following command in your project directory:
 
 Add tailwind config tailwind.config.js
+
+---
+if you use tailwindcss >=v4.0 use this in init css file in project:
+```css
+@config "path_to_your_config_tailwindcss_file"
+/* ex: @config "../tailwind.config.js" #for vite react */
+```
+---
+
+Add needed packages to your `tailwind.config.js` file:
+
 ```ts
 {
 	content: ["./node_modules/rc-smart-layout/**/*.{js,ts,jsx,tsx}"],
@@ -62,7 +73,7 @@ yarn add @kumodefe/rc-smart-layout
 ### Basic Layout
 
 ```tsx
-import {SmartLayout} from "rc-smart-layout";
+import {SmartLayout} from "@kumodefe/rc-smart-layout";
 
 const App = () => (
 	<SmartLayout direction="vertical" responsive>
@@ -76,7 +87,7 @@ const App = () => (
 ### Resizable and Collapsible Sections
 
 ```tsx
-import {SmartLayout} from "rc-smart-layout";
+import {SmartLayout} from "@kumodefe/rc-smart-layout";
 
 const App = () => (
 	<SmartLayout direction="horizontal">
@@ -92,7 +103,7 @@ const App = () => (
 ### With Persistent Size and Minimum Size
 
 ```tsx
-import {SmartLayout} from "smart-layout-pro";
+import {SmartLayout} from "@kumodefe/rc-smart-layout";
 
 const App = () => (
 	<SmartLayout direction="vertical">
@@ -110,7 +121,7 @@ const App = () => (
 ## Customization
 
 ```tsx
-import {SmartLayout} from "smart-layout-pro";
+import {SmartLayout} from "@kumodefe/rc-smart-layout";
 
 const SmartLayoutExample = () => {
 	return (

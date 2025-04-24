@@ -1,0 +1,66 @@
+{
+	"name": "rc-smart-layout",
+	"description": "A flexible and customizable layout component for React that supports resizing, collapsing, and persistent size. It allows you to manage layout sections with horizontal and vertical orientations, with the ability to adjust sizes and remember them across sessions.",
+	"version": "1.0.0",
+	"license": "MIT",
+	"publisher": "ponander",
+	"author": "ponander",
+	"main": "dist/index.js",
+	"module": "dist/index.esm.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup src/index.tsx --dts --format esm,cjs",
+		"dev": "tsup src/index.tsx --watch"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kumodefe/rc-smart-layout.git"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"clsx": "^2.0.0",
+		"lucide-react": "^0.291.0"
+	},
+	"dependencies": {
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.503.0",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.1.2",
+		"@types/react-dom": "^19.1.2",
+		"tsup": "^8.4.0",
+		"typescript": "^5.8.3"
+	},
+	"keywords": [
+		"layout",
+		"smart layout",
+		"dynamic layout",
+		"responsive",
+		"grid",
+		"flexbox",
+		"ui layout",
+		"react layout",
+		"nextjs layout",
+		"tailwind",
+		"ui",
+		"component",
+		"react component",
+		"layout system",
+		"custom layout",
+		"split layout",
+		"responsive layout",
+		"collapsible layout",
+		"react layout component",
+		"layout model",
+		"component layout",
+		"react",
+		"resizable",
+		"collapsible"
+	]
+}

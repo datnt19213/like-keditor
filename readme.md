@@ -1,191 +1,361 @@
-# React Smart Layout
 
-### [Demo](https://rc-smart-layout-demo-zmz7.vercel.app)
+## ✨ KEditor  
 
-A flexible and customizable layout component for React that supports resizing, collapsing, and persistent size. It allows you to manage layout sections with horizontal and vertical orientations, with the ability to adjust sizes and remember them across sessions.
+A powerful, extensible, and customizable rich-text editor built on top of [Yoopta](https://yoopta.dev) - [Yoopta Docs](https://yoodocs.space). Comes with built-in support for images, videos, files, markdown export, and more!
 
-## Features
+#### **[Demo](https://www.google.com)**
 
-- **Resizable Sections**: Resize layout sections by dragging the edges.
-- **Collapsible Sections**: Toggle sections between expanded and collapsed states.
-- **Persistent Layout**: Store and persist section sizes across sessions using `localStorage`.
-- **Responsive Layout**: Automatically adapts to different screen sizes with responsive configurations.
-- **Vertical and Horizontal Layouts**: Supports both vertical and horizontal layouts.
-- **Minimum Size Constraint**: Ensures sections don't shrink below a specified size.
-- **Animated Transitions**: Smooth transitions when resizing or collapsing sections.
+### 🔧 Features
 
-## Installation
+- ✅ **Fully customizable** with plugins, marks, tools
+- 🖼️ Supports image, video, file uploads
+- 🔄 Undo/Redo capability via external controls
+- 🧩 Custom plugin support (e.g., carousel)
+- 📤 Export to HTML, Markdown, Plain Text
+- 📌 Real-time change handling
+- 🔒 Read-only mode support
+- 🧠 Smart placeholder and autofocus support
+    
 
-To install the package, run the following command in your project directory:
+----------
 
+## 📦 Installation
+
+
+```bash
+npm install like-keditor
+//or
+yarn add like-keditor
+``` 
+----------
 Add tailwind config tailwind.config.js
 
+  
+
 ---
+
 If you use tailwindcss >=v4.0 use this in init css file in project:
+
 ```css
-@config "path_to_your_config_tailwindcss_file"
+@config  "path_to_your_config_tailwindcss_file"
 /* example: @config "../tailwind.config.js" #for vite react */
+/* or use link to index if use simple React base 
+<script  src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
+(this maybe difference, should check on tailwindcss official website) */
 ```
 ---
-
 Add needed packages to your `tailwind.config.js` file:
-
 ```ts
 {
-	content: ["./node_modules/rc-smart-layout/**/*.{js,ts,jsx,tsx}"],
-	theme: {
-		// ...
-	},
-	variants: {
-		// ...
-	},
-	plugins: [],
+content: ["./node_modules/like-keditor/**/*.{js,ts,jsx,tsx}"],
+theme: {
+// ...
+},
+variants: {
+// ...
+},
+plugins: [],
 };
 
 ```
+----------
 
-Add needed packages with npm or yarn:
+## 🧠 Usage
 
-```bash
-npm install lucide-react clsx
-# or
-yarn add lucide-react clsx
+### 1. Import the component
+
+```ts
+import  { Editor }  from  'like-keditor';
+``` 
+
+### 2. Basic usage
+
+```ts
+<Editor />
+``` 
+
+### 3. With advanced configuration
+```ts
+import React, { useState } from 'react';
+import { Editor } from 'like-keditor'; 
+
+// Optional: Add styles for editor
+import './styles/editor.css';
+import './styles/render.css';
+
+export default function EditorExample() {
+  const [exported, setExported] = useState<{
+    html?: string;
+    markdown?: string;
+    plainText?: string;
+  }>({});
+
+  const handleEditorChange = (value: any) => {
+    console.log('Editor content updated:', value);
+  };
+
+  const handleExport = ({
+    html,
+    markdown,
+    plainText,
+  }: {
+    html: string;
+    markdown: string;
+    plainText: string;
+  }) => {
+    setExported({ html, markdown, plainText });
+  };
+
+  const mockImageUpload = async (file: File) => {
+    const src = URL.createObjectURL(file);
+    return {
+      src,
+      alt: file.name,
+      sizes: {
+        width: 300,
+        height: 200,
+      },
+    };
+  };
+
+  const mockVideoUpload = async (file: File) => {
+    return {
+      src: URL.createObjectURL(file),
+      format: 'video/mp4',
+    };
+  };
+
+  const mockPosterUpload = async (file: File) => {
+    return {
+      src: URL.createObjectURL(file),
+      alt: file.name,
+      sizes: {
+        width: 400,
+        height: 300,
+      },
+    };
+  };
+
+  const mockFileUpload = async (file: File) => {
+    return {
+      src: URL.createObjectURL(file),
+      format: file.type,
+      name: file.name,
+      size: file.size,
+    };
+  };
+
+  return (
+    <div className="p-6">
+      <h1 className="text-2xl font-semibold mb-4">Yoopta Editor Example</h1>
+
+      <Editor
+        onChange={handleEditorChange}
+        onExport={handleExport}
+        placeholder="Start typing your awesome content..."
+        autoFocus
+        exportAllows={['html', 'markdown', 'plainText']}
+        onImageUpload={mockImageUpload}
+        onVideoUpload={{
+          onUpload: mockVideoUpload,
+          onUploadPoster: mockPosterUpload,
+        }}
+        onFileUpload={mockFileUpload}
+      />
+		
+      <div className="mt-10 space-y-4">
+        <h2 className="text-xl font-bold">Exported HTML</h2>
+        <pre className="bg-gray-100 p-3 rounded max-h-64 overflow-auto whitespace-pre-wrap">
+          {exported.html || 'No HTML yet.'}
+        </pre>
+
+        <h2 className="text-xl font-bold">Exported Markdown</h2>
+        <pre className="bg-gray-100 p-3 rounded max-h-64 overflow-auto whitespace-pre-wrap">
+          {exported.markdown || 'No Markdown yet.'}
+        </pre>
+
+        <h2 className="text-xl font-bold">Exported Plain Text</h2>
+        <pre className="bg-gray-100 p-3 rounded max-h-64 overflow-auto whitespace-pre-wrap">
+          {exported.plainText || 'No plain text yet.'}
+        </pre>
+      </div>
+    </div>
+  );
+}
+```
+
+----------
+
+
+## 🎨 Styling export HTML
+> **Apply it when your export HTML was not same style with the editor**
+
+Here is the css export HTML style default:
+```css
+#details-container-TdaSo6fg2z  *,
+#details-container-TdaSo6fg2z  *::before,
+#details-container-TdaSo6fg2z  *::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	outline: none;
+	transition: all  0.2s  ease;
+}
+
+#details-container-TdaSo6fg2z  h1,
+#details-container-TdaSo6fg2z  h2,
+#details-container-TdaSo6fg2z  h3,
+#details-container-TdaSo6fg2z  h4,
+#details-container-TdaSo6fg2z  h5,
+#details-container-TdaSo6fg2z  h6 {
+	font-weight: 600;
+	line-height: 1.25;
+	margin-bottom: 0.75rem;
+}
+
+#details-container-TdaSo6fg2z  h1 { font-size: 2.25rem; }
+#details-container-TdaSo6fg2z  h2 { font-size: 1.875rem; }
+#details-container-TdaSo6fg2z  h3 { font-size: 1.5rem; }
+#details-container-TdaSo6fg2z  h4 { font-size: 1.25rem; }
+#details-container-TdaSo6fg2z  h5 { font-size: 1.125rem; }
+#details-container-TdaSo6fg2z  h6 { font-size: 1rem; }
+
+#details-container-TdaSo6fg2z  p {
+	margin-bottom: 1rem;
+}
+
+#details-container-TdaSo6fg2z  a {
+	text-decoration: none;
+	font-weight: 500;
+}
+
+#details-container-TdaSo6fg2z  a:hover {
+	text-decoration: underline;
+}
+
+#details-container-TdaSo6fg2z  ul,
+#details-container-TdaSo6fg2z  ol {
+	padding-left: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+#details-container-TdaSo6fg2z  li {
+	margin-bottom: 0.5rem;
+}
+
+#details-container-TdaSo6fg2z  img {
+	max-width: 100%;
+	border-radius: 0.5rem;
+	margin: 1rem  0;
+}
+
+#details-container-TdaSo6fg2z  blockquote {
+	border-left: 4px  solid  hsl(221.2, 83.2%, 53.3%);
+	padding-left: 1rem;
+	margin: 1rem  0;
+	font-style: italic;
+	border-radius: 0.25rem;
+}
+
+
+#details-container-TdaSo6fg2z  pre,
+#details-container-TdaSo6fg2z  code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.95rem;
+	border-radius: 0.375rem
+	padding: 0.25rem  0.5rem;
+	overflow-x: auto;
+}
+
+#details-container-TdaSo6fg2z  table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1rem  0;
+	font-size: 0.95rem;
+}
+
+#details-container-TdaSo6fg2z  th,
+#details-container-TdaSo6fg2z  td {
+	border: 1px  solid  hsl(214.3, 31.8%, 91.4%);
+	padding: 0.75rem  1rem;
+	text-align: left;
+}
+
+#details-container-TdaSo6fg2z  th {
+	font-weight: 600;
+}
+
+#details-container-TdaSo6fg2z  input,
+#details-container-TdaSo6fg2z  select,
+#details-container-TdaSo6fg2z  textarea,
+#details-container-TdaSo6fg2z  button {
+	font: inherit;
+	border: 1px  solid  hsl(214.3, 31.8%, 91.4%);
+	border-radius: 0.5rem;
+	padding: 0.5rem  0.75rem;
+	margin-bottom: 1rem;
+}
+
+#details-container-TdaSo6fg2z  input:focus,
+#details-container-TdaSo6fg2z  select:focus,
+#details-container-TdaSo6fg2z  textarea:focus {
+border-color: hsl(221.2, 83.2%, 53.3%);
+box-shadow: 0  0  0  2px  hsl(221.2, 83.2%, 90%);
+}
+
+#details-container-TdaSo6fg2z  button {
+	cursor: pointer;
+	font-weight: 500;
+}
 
 ```
 
-Install with npm or yarn:
+## 🧩 Props
 
-```bash
-npm install @kumodefe/rc-smart-layout
-# or
-yarn add @kumodefe/rc-smart-layout
-```
 
-## Usage
+|                 Prop               |                 Type                  |    Description           
+|------------------------------------|---------------------------------------|-------------------------------------|
+| value                                | YooptaContentValue                      | Initial editor value                  |
+| onChange                             | (value, options) => void                | Callback on change                    |
+| onExport                             | (data) => void                          | Callback for exporting content        |
+| onImageUpload                        | (file) => Promise<...>                  | Image upload handler                  |
+| onVideoUpload                        | { onUpload, onUploadPoster }            | Video and poster upload handlers      |
+| onFileUpload                         | (file) => Promise<...>                  | File upload handler                   |
+| exportAllows                         | ("html" \| "markdown" \| "plainText")[] | Types to export                       |
+| readOnly                             | boolean                                 | If true, disables editing             |
+| autoFocus                            | boolean                                 | If true, focuses editor on mount      |
+| onUndo, onRedo                       | (callback) => void                      | Provide undo/redo functions to parent |
+| onPathChange                         | (path: YooptaPath) => void              | Track focused block path              |
+| placeholder                          | string                                  | Placeholder text                      |
+| width, id, style, className          | any                                     | Optional DOM styling/ID               |
+| classNameContainer                   | HTMLAttributes<HTMLDivElement>          | Container styling & props             |
+| plugins, customPlugins, marks, tools | any[]                                   | Extend editor's capabilities          |
 
-### Basic Layout
+----------
 
-```tsx
-import {SmartLayout} from "@kumodefe/rc-smart-layout";
+## 📤 Exported Format
 
-const App = () => (
-	<SmartLayout direction="vertical" responsive>
-		<SmartLayout.Header resizable>Header Content</SmartLayout.Header>
-		<SmartLayout.Body>Main Content</SmartLayout.Body>
-		<SmartLayout.Footer>Footer Content</SmartLayout.Footer>
-	</SmartLayout>
-);
-```
+```json
+{ 
+	html: "<div id='details-container'>...</div>", 
+	markdown: "**Bold text**", 
+	plainText: "Just plain text", 
+	type: ['html', 'markdown', 'plainText'],
+}
+``` 
 
-### Resizable and Collapsible Sections
 
-```tsx
-import {SmartLayout} from "@kumodefe/rc-smart-layout";
+## 🧪 Tips
 
-const App = () => (
-	<SmartLayout direction="horizontal">
-		<SmartLayout.Header resizable>Header Content</SmartLayout.Header>
-		<SmartLayout.Body resizable collapsible>
-			Main Content
-		</SmartLayout.Body>
-		<SmartLayout.Footer>Footer Content</SmartLayout.Footer>
-	</SmartLayout>
-);
-```
----
+-   You can fully customize the plugin system by passing your own `plugins`, `marks`, and `tools`.
+    
+-   Upload handlers let you integrate with any file hosting API (e.g., S3, Cloudinary).
+    
+-   All exports are auto-triggered on change — useful for syncing content with servers.
+    
 
-### With Persistent Size and Minimum Size
+----------
 
-```tsx
-import {SmartLayout} from "@kumodefe/rc-smart-layout";
+## 🤝 License
 
-const App = () => (
-	<SmartLayout direction="vertical">
-		<SmartLayout.Header resizable initialSize={200} persistKey="header-size">
-			Header Content
-		</SmartLayout.Header>
-		<SmartLayout.Body resizable minSize="100px" initialSize={400}>
-			Main Content
-		</SmartLayout.Body>
-		<SmartLayout.Footer>Footer Content</SmartLayout.Footer>
-	</SmartLayout>
-);
-```
-
----
-
-## Customization
-
-```tsx
-import {SmartLayout} from "@kumodefe/rc-smart-layout";
-
-const SmartLayoutExample = () => {
-	return (
-		<div className="w-full h-screen">
-			<SmartLayout direction="vertical" preset="card" responsive className="border bg-white shadow">
-				<SmartLayout.Header
-					resizable
-					collapsible
-					showToggle
-					persistKey="layout-header"
-					initialSize={100}
-					minSize="60px"
-					maxSize="200px"
-					animated
-				>
-					<div className="h-full p-4 bg-blue-100">Header (resizable + collapsible)</div>
-				</SmartLayout.Header>
-
-				<SmartLayout.Body>
-					<div className="h-full p-4 bg-gray-100 overflow-auto">
-						<p className="mb-2">Body (scrollable, grows automatically)</p>
-						{[...Array(20)].map((_, i) => (
-							<p key={i}>Lorem ipsum #{i + 1}</p>
-						))}
-					</div>
-				</SmartLayout.Body>
-
-				<SmartLayout.Footer minSize="50px" maxSize="120px">
-					<div className="h-full p-4 bg-green-100">Footer (static)</div>
-				</SmartLayout.Footer>
-			</SmartLayout>
-		</div>
-	);
-};
-
-export default SmartLayoutExample;
-```
-
-## Props
-
-### SmartLayout
-
-| Prop         | Type                                        | Description                                                 |
-| ------------ | ------------------------------------------- | ----------------------------------------------------------- |
-| `direction`  | `"vertical"` or `"horizontal"`              | The layout orientation (default: `"vertical"`)              |
-| `responsive` | `boolean`                                   | Enables responsive layout (default: `false`)                |
-| `preset`     | `"modal"`, `"card"`, `"split"`, `"sidebar"` | Optional preset styles for the layout.                      |
-| `className`  | `string`                                    | Custom class names for styling                              |
-| `as`         | `string`                                    | The HTML element to render the layout as (default: `"div"`) |
-
-### Section (`SmartLayout.Header`, `SmartLayout.Body`, `SmartLayout.Footer`)
-
-| Prop               | Type                           | Description                                             |
-| ------------------ | ------------------------------ | ------------------------------------------------------- |
-| `children`         | `ReactNode`                    | Content of the section                                  |
-| `resizable`        | `boolean`                      | Whether the section is resizable (default: `false`)     |
-| `collapsible`      | `boolean`                      | Whether the section can be collapsed (default: `false`) |
-| `collapsed`        | `boolean`                      | Initial collapsed state (default: `false`)              |
-| `onToggleCollapse` | `(collapsed: boolean) => void` | Callback when collapsing or expanding the section       |
-| `minSize`          | `string`                       | Minimum size of the section (e.g., `"100px"`)           |
-| `maxSize`          | `string`                       | Maximum size of the section (e.g., `"500px"`)           |
-| `initialSize`      | `number`                       | Initial size in pixels                                  |
-| `persistKey`       | `string`                       | The key to store the size in `localStorage`             |
-| `animated`         | `boolean`                      | Whether to apply smooth transitions (default: `false`)  |
-
-## License
-
-This project is licensed under the MIT License.
-
-## Keywords
-layout, smart layout, dynamic layout, responsive, grid, flexbox, ui layout, react layout, nextjs layout, tailwind, ui, component, react component, layout system, custom layout, split layout, responsive layout, collapsible layout, react layout component, layout model, component layout, react, resizable, collapsible
+MIT – free to use, modify, and extend.

@@ -2385,7 +2385,9 @@ var Editor = ({
   className,
   style,
   classNameContainer,
-  onPathChange
+  onPathChange,
+  onUndo,
+  onRedo
 }) => {
   const [editorKey, setEditorKey] = useState4(v4());
   const editor = useMemo(() => createYooptaEditor(), []);
@@ -2398,6 +2400,12 @@ var Editor = ({
       onSelectionRef(selectionRef.current);
     }
   }, [onSelectionRef]);
+  useEffect3(() => {
+    if (editor) {
+      onUndo && onUndo(() => editor.undo());
+      onRedo && onRedo(() => editor.redo());
+    }
+  }, [editor, onUndo, onRedo]);
   const serialize = (types) => {
     const data2 = editor.getEditorValue();
     if (!data2) return;

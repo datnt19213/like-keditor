@@ -104,6 +104,8 @@ export interface EditorProps {
 		style?: React.CSSProperties;
 	};
 	onPathChange?: (path: YooptaPath) => void;
+	onUndo?: (undoFnc: () => void) => void;
+  onRedo?: (redoFnc: () => void) => void;
 }
 
 export const DEFAULT_PLUGINS = [
@@ -159,6 +161,8 @@ export const Editor: React.FC<EditorProps> = ({
 	style,
 	classNameContainer,
 	onPathChange,
+	onUndo,
+  onRedo
 }) => {
 	const [editorKey, setEditorKey] = useState(v4());
 
@@ -173,6 +177,13 @@ export const Editor: React.FC<EditorProps> = ({
 			onSelectionRef(selectionRef.current);
 		}
 	}, [onSelectionRef]);
+
+	useEffect(() => {
+    if (editor) {
+      onUndo && onUndo(() => editor.undo());
+      onRedo && onRedo(() => editor.redo());
+    }
+  }, [editor, onUndo, onRedo]);
 
 	const serialize = (types: ("html" | "markdown" | "plainText")[]) => {
 		const data = editor.getEditorValue();

@@ -32,7 +32,9 @@ export {
   DEFAULT_TOOLS,
   Editor,
 } from './components/editor';
+
 export type { EditorProps } from './components/editor';
+
 export { useIsMobile } from './hooks/use-mobile';
 export type {
   CarouselElement,

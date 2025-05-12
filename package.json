@@ -1,7 +1,7 @@
 {
 	"name": "like-keditor",
 	"description": "A powerful, extensible, and customizable rich-text editor built on top of [Yoopta](https://yoopta.dev) - [Yoopta Docs](https://yoodocs.space). Comes with built-in support for images, videos, files, markdown export, and more!",
-	"version": "1.0.0",
+	"version": "1.0.7",
 	"license": "MIT",
 	"publisher": "kumodefe",
 	"author": "kumodefe",

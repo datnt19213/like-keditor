@@ -79,6 +79,8 @@ import  { Editor }  from  'like-keditor';
 import React, { useState } from 'react';
 import { Editor } from 'like-keditor'; 
 
+import '../node_modules/like-keditor/dist/index.css';
+
 // Optional: Add styles for editor
 import './styles/editor.css';
 import './styles/render.css';
@@ -89,6 +91,8 @@ export default function EditorExample() {
     markdown?: string;
     plainText?: string;
   }>({});
+  const undoRef = React.useRef<() => void>(() => {});
+  const redoRef = React.useRef<() => void>(() => {});
 
   const handleEditorChange = (value: any) => {
     console.log('Editor content updated:', value);
@@ -149,6 +153,9 @@ export default function EditorExample() {
     <div className="p-6">
       <h1 className="text-2xl font-semibold mb-4">Yoopta Editor Example</h1>
 
+      // <Button className='border border-gray-500 mr-2 hover:bg-gray-50' onClick={() => undoRef.current?.()}>Undo</Button>
+      // <Button className='border border-gray-500 mr-2 hover:bg-gray-50' onClick={() => redoRef.current?.()}>Redo</Button>
+
       <Editor
         onChange={handleEditorChange}
         onExport={handleExport}
@@ -161,6 +168,8 @@ export default function EditorExample() {
           onUploadPoster: mockPosterUpload,
         }}
         onFileUpload={mockFileUpload}
+        onUndo={(fn) => (undoRef.current = fn)}
+        onRedo={(fn) => (redoRef.current = fn)}
       />
 		
       <div className="mt-10 space-y-4">
@@ -335,9 +344,9 @@ box-shadow: 0  0  0  2px  hsl(221.2, 83.2%, 90%);
 
 ## 📤 Exported Format
 
-```json
+```ts
 { 
-	html: "<div id='details-container'>...</div>", 
+	html: "<div id='details-container-TdaSo6fg2z'>...</div>", 
 	markdown: "**Bold text**", 
 	plainText: "Just plain text", 
 	type: ['html', 'markdown', 'plainText'],

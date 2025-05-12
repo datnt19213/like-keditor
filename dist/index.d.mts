@@ -175,6 +175,8 @@ interface EditorProps {
         style?: React.CSSProperties;
     };
     onPathChange?: (path: YooptaPath) => void;
+    onUndo?: (undoFnc: () => void) => void;
+    onRedo?: (redoFnc: () => void) => void;
 }
 declare const DEFAULT_PLUGINS: any[];
 declare const DEFAULT_CUSTOM_PLUGINS: _yoopta_editor.YooptaPlugin<Record<string, _yoopta_editor.SlateElement<string, any>>, Record<string, unknown>>[];
